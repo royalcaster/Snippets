@@ -109,11 +109,13 @@ h1 {
     border: 3px solid #3a3a3a;
     border-radius: 15px;
     overflow: hidden;
+    resize: both;
+
 }
 
 .snippet_head {
     width: 100%;
-    height: 50px;
+    height: 35px;
     background-color: #3a3a3a;
     z-index: 1;
 }
@@ -123,24 +125,22 @@ h1 {
 }
 
 .snippet_body {
+    position: absolute;
     width: 100%;
     height: 100%;
     background-color: chartreuse;
-    padding: 10px;
 }
 
 .snippet_footer {
     width: 100%;
     height: 30px;
     background-color: crimson;
-    bottom: 0px;
-    position: absolute;
 }
 
 .h_lines {
     position: absolute;
     margin: auto;
-    top: 5px;
+    top: -3px;
     width: 100%;
 }
 
@@ -148,4 +148,30 @@ h1 {
     width: 50px;
     opacity: 0.5;
     
+}
+
+.title_box {
+    padding-left: 5px;
+    padding-right: 15px;
+    margin-bottom: 10px;
+}
+
+#title_field {
+    margin-top: 10px;
+    width: 100%;
+    height: 25px;
+}
+
+.content_box {
+    position: relative;
+    padding-left: 5px;
+    padding-right: 15px;
+    height: 80%;
+    background-color: aqua;
+}
+
+#note_textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
 }
