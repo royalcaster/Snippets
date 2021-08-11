@@ -1,39 +1,113 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-    <link rel="stylesheet" href="main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,700;1,300&display=swap" rel="stylesheet">
+        <head>
+            <!-- import der main.css -->
+            <link rel="stylesheet" href="main.css">
+            
+            <!-- google font poppins -->
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,700;1,300&display=swap" rel="stylesheet">
 
-  <title>Snippets - Login</title>
-</head>
-<body>
-  <p class="main_title login_title">snippets</p>
-    <!--LOGIN-->
-    <div class ="login_container" id="login_form">
-        <p id="warning" class="register_info_text warning"></p>
-        <input class="login_input" placeholder="E-Mail-Adresse" id="mail_input" spellcheck="false">
-        <input class="login_input" type="password" id="password_input" placeholder="Passwort">
-        <a class="show_password_toggle" id="password_button" onclick="togglePassword()">Passwort anzeigen</a>
-        <button class="login_button" onclick="login()">Anmelden</button>
-        <p class="register_info_text">Brauchst du einen Account?
-        <a class ="register_link" onclick="loadRegisterForm()">Erstelle einen</a></p>
-    </div>
+            <title>Workplace</title>
+        </head>
+    <body>
+            <!-- NAVBAR -->
+            <div class="container_navbar">
+                <p class="main_title">snippets</p>
+            </div>
+            
 
-    <!--REGISTER-->
-    <div class ="login_container" id="register_form" style="display: none;">
-        <p id="warning_register" class="register_info_text warning"></p>
-        <input class="login_input" placeholder="E-Mail-Adresse" id="mail_input_register" spellcheck="false">
-        <p id="warning_register_password" class="register_info_text warning"></p>
-        <input class="login_input" type="password" id="password_input_register" placeholder="Passwort">
-        <a class="show_password_toggle" id="password_button_register" onclick="togglePasswordRegister()">Passwort anzeigen</a>
-        <button class="login_button" onclick="registerUser()">Registrieren</button>
-        <p class="register_info_text">Du hast schon einen Account?
-        <a class ="register_link" onclick="loadLoginForm()">Anmelden</a></p>
-    </div>
+            <!-- CONTENT -->
+            <div class ="container_content">
 
-    <script src="js/login.js"></script>
-    
-    <script src="data/app.js"></script>
-</body>
+                <!-- TOOLBAR -->
+                <div class="container_toolbar">
+                    <div class="toolbar_button_container">
+                        <button class="toolbar_main_button">Notiz</button>
+                        <button class="toolbar_main_button">Tabelle</button>
+                        <button class="toolbar_main_button">Liste</button>
+                    </div>
+                </div>
+                
+
+                <!-- WORKPLACE -->
+                <div class="container_workplace" id ="workplace_container">
+
+
+
+                    <div class="snippet_container" id="snippet_container">
+                        <div class="snippet_header" id="snippet_header">
+                            <div class="h_lines">
+                                <hr class ="h_line">
+                            </div>
+                        </div>
+                        <div class="snippet_body">
+                            <div class="title_box">
+                                <input type="text" id="title_field">
+                            </div>
+                            <div class="content_box">
+                                <textarea id="note_textarea" rows="4" cols="50" spellcheck="false">At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+                                </textarea>
+                            </div>
+
+                        </div>
+                        <!--
+                            <div class="snippet_footer">footer</div>
+                        -->
+                    </div>
+
+                    <div class="snippet_container" id="snippet_container" style="left: 500px;">
+                      <div class="snippet_header" id="snippet_header">
+                          <div class="h_lines">
+                              <hr class ="h_line">
+                          </div>
+                      </div>
+                      <div class="snippet_body">
+                          <div class="title_box">
+                              <input type="text" id="title_field">
+                          </div>
+                          <div class="content_box">
+                              <table style="width:100%" class="table">
+                                <tr class="table_row">
+                                  <td class="table_cell"><input class="table_textarea" spellcheck="false"></td>
+                                  <td class="table_cell"><input class="table_textarea" spellcheck="false"></td>
+                                  <td class="table_cell"><input class="table_textarea" spellcheck="false"></td>
+                                </tr>
+                                <tr class="table_row">
+                                    <td class="table_cell"><input class="table_textarea" spellcheck="false"></td>
+                                    <td class="table_cell"><input class="table_textarea" spellcheck="false"></td>
+                                    <td class="table_cell"><input class="table_textarea" spellcheck="false"></td>
+                                  </tr>
+                                  <tr class="table_row">
+                                    <td class="table_cell"><input class="table_textarea" spellcheck="false"></td>
+                                    <td class="table_cell"><input class="table_textarea" spellcheck="false"></td>
+                                    <td class="table_cell"><input class="table_textarea" spellcheck="false"></td>
+                                  </tr>
+                                  <tr class="table_row">
+                                    <td class="table_cell"><input class="table_textarea" spellcheck="false"></td>
+                                    <td class="table_cell"><input class="table_textarea" spellcheck="false"></td>
+                                    <td class="table_cell"><input class="table_textarea" spellcheck="false"></td>
+                                  </tr>
+                              </table>
+                          </div>
+
+                      </div>
+                      <!--
+                          <div class="snippet_footer">footer</div>
+                      -->
+                  </div>
+
+
+
+                </div>
+
+            </div>
+
+            <!-- FOOTER 
+            <div class="container_footer">footer</div>
+            -->
+
+        <script src="js/workplace.js"></script>
+    </body>
 </html>

@@ -1,12 +1,16 @@
-// Make the DIV element draggable:
-dragSnippet(document.getElementById("snippet_container"));
+// Make all the DIV elements draggable:
+var x = document.getElementsByClassName("snippet_container");
+
+for(var i = 0; i < x.length; i++) {
+  dragSnippet(x[i]);
+}
 
 //drag-funktion für Snippet
 function dragSnippet(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById("snippet_header")) {
+  if (elmnt.firstElementChild) {
     // if present, the header is where you move the DIV from:
-    document.getElementById("snippet_header").onmousedown = dragMouseDown;
+    elmnt.firstElementChild.onmousedown = dragMouseDown;
   } else {
     // otherwise, move the DIV from anywhere inside the DIV:
     elmnt.onmousedown = dragMouseDown;
