@@ -47,3 +47,18 @@ function dragSnippet(elmnt) {
   }
 }
 
+function togglePassword() {
+
+  var e = document.getElementById("password_input");
+  var p = document.getElementById("password_button");
+
+  if (e.type === "password") {
+    e.type = "text";
+    p.innerHTML = "Passwort verstecken";
+  }
+  else {
+    e.type = "password";
+    p.innerHTML = "Passwort anzeigen";
+  }
+
+}
