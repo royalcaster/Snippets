@@ -1,8 +1,8 @@
 // Make all the DIV elements draggable:
-var x = document.getElementsByClassName("snippet_container");
+var containers = document.getElementsByClassName("snippet_container");
 
-for(var i = 0; i < x.length; i++) {
-  dragSnippet(x[i]);
+for(var i = 0; i < containers.length; i++) {
+  dragSnippet(containers[i]);
 }
 
 //drag-funktion für Snippet
@@ -47,18 +47,18 @@ function dragSnippet(elmnt) {
   }
 }
 
-function togglePassword() {
+function addSnippet(x,y,type) {
+    var Snippet = createSnippet(x,y,type);
+}
 
-  var e = document.getElementById("password_input");
-  var p = document.getElementById("password_button");
-
-  if (e.type === "password") {
-    e.type = "text";
-    p.innerHTML = "Passwort verstecken";
+function createSnippet(x,y,type) {
+  const Note = {
+    x: x,
+    y: y,
+    type: type
   }
-  else {
-    e.type = "password";
-    p.innerHTML = "Passwort anzeigen";
-  }
+}
 
+function placeSnippet(snippet){
+    
 }
