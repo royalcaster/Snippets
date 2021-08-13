@@ -68,10 +68,43 @@ function createNote() {
 }
 
 function createTable(rows, cols) {
-  console.log(rows + " und " + cols);
+    let snippet_container = createSnippetContainer("table");
 
-  
+    let content_box = document.createElement("div");
+    content_box.className = "content_box";
 
+    var table = document.createElement("table");
+    table.className = "table";
+
+    //Schleife für Zeilen
+    for (var i = 0; i < rows; i++) {
+      var row = document.createElement("tr");
+      row.className = "table_row";
+      //Schleife für Spalten
+      for (var u = 0; u < cols; u++) {
+        let col = document.createElement("td");
+        col.className = "table_cell";
+        
+        let input = document.createElement("input");
+        input.className = "table_textarea";
+
+        col.appendChild(input);
+        row.appendChild(col);
+      }
+      table.appendChild(row);
+    }
+
+    content_box.appendChild(table);
+    snippet_container.getElementsByClassName("snippet_body")[0].appendChild(content_box);
+
+    let maxwidth = (cols * 150) + "px";
+    snippet_container.style.maxWidth = maxwidth;
+
+    let maxheight = (rows * 30 + 100) + "px";
+    snippet_container.style.maxHeight = maxheight;
+
+    document.getElementById("workplace_container").appendChild(snippet_container);
+    updateDrag();
 }
 
 function getTableDimension() {
@@ -127,11 +160,13 @@ function getTableDimension() {
   document.getElementById("container_toolbar").appendChild(popup_container);
 }
 
-
-
 function createSnippetContainer(type){
   var snippet_container = document.createElement("div");
   snippet_container.className = "snippet_container";
+
+  let offset = window.pageYOffset + 100;
+  let test = offset + "px";
+  snippet_container.style.top = test;
 
   var snippet_header = document.createElement("div");
   snippet_header.className = "snippet_header";
