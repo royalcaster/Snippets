@@ -113,6 +113,7 @@ function createList(){
 
   var content_box = document.createElement("div");
   content_box.className = "content_box";
+  content_box.id = "content_box_list";
 
   var list = document.createElement("ul");
   list.className = "list";
@@ -120,7 +121,7 @@ function createList(){
   var list_item = document.createElement("li");
   list_item.className = "list_item";
 
-  var list_item_input = document.createElement("input");
+  var list_item_input = document.createElement("textarea");
   list_item_input.className = "list_item_input";
 
   var list_item_remove = document.createElement("button");

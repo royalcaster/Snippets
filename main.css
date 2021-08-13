@@ -447,17 +447,41 @@ h1 {
 }
 
 .list {
-
+    width: 100%;
+    display: inline-block;
 }
 
 .list_item {
-
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .list_item_input {
-
+    border: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: rgba(0, 0, 0, 0.5);
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    outline: none;
+    padding: 5px;
+    height: 25px;
+    vertical-align: middle;
+    border-radius: 10px;
+    font-size: 16px;
 }
 
 .list_item_remove {
+    position: relative;
+    left: 15px;
+    height: 25px;
+    width: 25px;
+}
+
+.button_add {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: none;
+    outline: none;
+    position: absolute;
+    transform: translate(-50%,0);
+    left: 50%;
 
 }
