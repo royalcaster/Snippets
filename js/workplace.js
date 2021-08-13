@@ -100,11 +100,45 @@ function createTable(rows, cols) {
     let maxwidth = (cols * 150) + "px";
     snippet_container.style.maxWidth = maxwidth;
 
-    let maxheight = (rows * 30 + 100) + "px";
+    let maxheight = (rows * 45 + 100) + "px";
+    snippet_container.style.minHeight = maxheight;
     snippet_container.style.maxHeight = maxheight;
 
     document.getElementById("workplace_container").appendChild(snippet_container);
     updateDrag();
+}
+
+function createList(){
+  var snippet_container = createSnippetContainer("list");
+
+  var content_box = document.createElement("div");
+  content_box.className = "content_box";
+
+  var list = document.createElement("ul");
+  list.className = "list";
+
+  var list_item = document.createElement("li");
+  list_item.className = "list_item";
+
+  var list_item_input = document.createElement("input");
+  list_item_input.className = "list_item_input";
+
+  var list_item_remove = document.createElement("button");
+  list_item_remove.className = "list_item_remove";
+  list_item_remove.innerHTML = "x";
+
+  var button_add = document.createElement("button");
+  button_add.className = "button_add";
+  button_add.innerHTML = "Hinzufügen";
+
+  list_item.appendChild(list_item_input);
+  list_item.appendChild(list_item_remove);
+  list.appendChild(list_item);
+  content_box.appendChild(list);
+  content_box.appendChild(button_add);
+  snippet_container.getElementsByClassName("snippet_body")[0].appendChild(content_box);
+  document.getElementById("workplace_container").appendChild(snippet_container);
+  updateDrag();
 }
 
 function getTableDimension() {

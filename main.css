@@ -194,7 +194,7 @@ h1 {
 .content_box {
     padding-left: 10px;
     padding-right: 14px;
-    background-color: rgb(255, 255, 255);
+    background-color: white;
     flex-grow: 1;
     margin-bottom: 15px;
 }
@@ -444,4 +444,20 @@ h1 {
 .table_commit_button:hover {
     background-color: rgba(0, 0, 0, 0.2);
     cursor: pointer;
+}
+
+.list {
+
+}
+
+.list_item {
+
+}
+
+.list_item_input {
+
+}
+
+.list_item_remove {
+
 }
