@@ -67,6 +67,68 @@ function createNote() {
   updateDrag();
 }
 
+function createTable(rows, cols) {
+  console.log(rows + " und " + cols);
+
+  
+
+}
+
+function getTableDimension() {
+  //Workplace dunkler machen als Kontrast
+  darkenWorkplace();
+  var popup_container = document.createElement("div");
+  popup_container.className = "popup_container";
+  popup_container.id = "popup_container";
+
+  var tag_rows = document.createElement("p");
+  tag_rows.className = "input_tag";
+  tag_rows.innerHTML = "Zeilen:";
+
+  var tag_cols = document.createElement("p");
+  tag_cols.className = "input_tag";
+  tag_cols.innerHTML = "Spalten:";
+
+  var input_rows = document.createElement("input");
+  input_rows.className = "popup_input";
+  input_rows.id = "input_rows";
+
+  var input_cols = document.createElement("input");
+  input_cols.className = "popup_input";
+  input_cols.id = "input_cols";
+
+  var rows_container = document.createElement("div");
+  rows_container.className = "input_container";
+
+  var cols_container = document.createElement("div");
+  cols_container.className = "input_container";
+
+  var br = document.createElement("br");
+
+  var commit_button = document.createElement("button");
+  commit_button.innerHTML = "Erstellen";
+  commit_button.className = "table_commit_button";
+  commit_button.id = "table_commit_button";
+  commit_button.onclick = function(){
+    lightenWorkplace();
+    var rows = input_rows.value;
+    var cols = input_cols.value;
+    document.getElementById("popup_container").remove();
+    createTable(rows, cols);
+  };
+
+  rows_container.appendChild(tag_rows);
+  rows_container.appendChild(input_rows);
+  cols_container.appendChild(tag_cols);
+  cols_container.appendChild(input_cols);
+  popup_container.appendChild(rows_container);
+  popup_container.appendChild(cols_container);
+  popup_container.appendChild(commit_button);
+  document.getElementById("container_toolbar").appendChild(popup_container);
+}
+
+
+
 function createSnippetContainer(type){
   var snippet_container = document.createElement("div");
   snippet_container.className = "snippet_container";
@@ -117,6 +179,12 @@ function createSnippetContainer(type){
   snippet_container.appendChild(snippet_body);
   //document.getElementById("workplace_container").appendChild(snippet_container);
   return snippet_container;
+}
 
-  
+function darkenWorkplace(){
+  document.getElementById("workplace_container").style.filter = "brightness(0.5)";
+}
+
+function lightenWorkplace() {
+  document.getElementById("workplace_container").style.filter = "brightness(1)"; 
 }
