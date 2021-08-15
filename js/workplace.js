@@ -121,8 +121,16 @@ function createList(){
   var list_item = document.createElement("li");
   list_item.className = "list_item";
 
+  var list_item_container = document.createElement("div");
+  list_item_container.className = "list_item_container";
+
   var list_item_input = document.createElement("textarea");
-  list_item_input.className = "list_item_input";
+  list_item_input.className = "list_item_input autoExpand";
+  list_item_input.style.resize = "none";
+  list_item_input.style.overflow = "hidden";
+  list_item_input.placeholder = "Neue Aufgabe...";
+  list_item_input.autofocus = "true";
+  list_item_input.spellcheck = "false";
 
   var list_item_remove = document.createElement("button");
   list_item_remove.className = "list_item_remove";
@@ -130,9 +138,10 @@ function createList(){
 
   var button_add = document.createElement("button");
   button_add.className = "button_add";
-  button_add.innerHTML = "Hinzufügen";
+  button_add.innerHTML = "Neue Aufgabe";
 
-  list_item.appendChild(list_item_input);
+  list_item_container.appendChild(list_item_input);
+  list_item.appendChild(list_item_container);
   list_item.appendChild(list_item_remove);
   list.appendChild(list_item);
   content_box.appendChild(list);
@@ -258,3 +267,27 @@ function darkenWorkplace(){
 function lightenWorkplace() {
   document.getElementById("workplace_container").style.filter = "brightness(1)"; 
 }
+
+//Auto-Resizing Textarea Script von Codepen
+function getScrollHeight(elm){
+  var savedValue = elm.value
+  elm.value = ''
+  elm._baseScrollHeight = elm.scrollHeight
+  elm.value = savedValue
+}
+
+function onExpandableTextareaInput({ target:elm }){
+  // make sure the input event originated from a textarea and it's desired to be auto-expandable
+  if( !elm.classList.contains('autoExpand') || !elm.nodeName == 'TEXTAREA' ) return
+  
+  var minRows = elm.getAttribute('data-min-rows')|0, rows;
+  !elm._baseScrollHeight && getScrollHeight(elm)
+
+  elm.rows = minRows
+  rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
+  elm.rows = minRows + rows
+}
+
+
+// global delegated event listener
+document.addEventListener('input', onExpandableTextareaInput)

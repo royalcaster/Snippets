@@ -447,41 +447,80 @@ h1 {
 }
 
 .list {
-    width: 100%;
-    display: inline-block;
+    margin-right: 20px;
 }
 
 .list_item {
-    color: rgba(0, 0, 0, 0.7);
+    color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.list_item_container {
+    width:  100%;
+    display: inline-block;
+    position: relative;
 }
 
 .list_item_input {
     border: none;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.15);
+    color: rgba(0, 0, 0, 0.75);
     font-family: "Poppins", sans-serif;
-    font-weight: 700;
+    font-weight: 300;
     outline: none;
     padding: 5px;
-    height: 25px;
-    vertical-align: middle;
     border-radius: 10px;
     font-size: 16px;
+    vertical-align: middle;
+    width: 100%;    
+    box-sizing: padding-box;
+}
+
+.list_item_input::placeholder {
+    color: rgba(0, 0, 0, 0.3);
 }
 
 .list_item_remove {
+    width: 50px;
     position: relative;
-    left: 15px;
-    height: 25px;
-    width: 25px;
+    left: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.35);
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.list_item_remove:hover {
+    color: red;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.15);
+    border: none;
+    transition: 0.3s;
 }
 
 .button_add {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.15);
     border: none;
     outline: none;
     position: absolute;
     transform: translate(-50%,0);
     left: 50%;
 
+    color: rgba(0, 0, 0, 0.75);
+    font-family: "Poppins",sans-serif;
+    font-weight: 700;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 250px;
+    border-radius: 25px;
+    font-size: 13px;
+}
+
+.button_add:hover {
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
 }
