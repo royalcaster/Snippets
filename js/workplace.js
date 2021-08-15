@@ -117,6 +117,7 @@ function createList(){
 
   var list = document.createElement("ul");
   list.className = "list";
+  list.id = "list";
 
   var list_item = document.createElement("li");
   list_item.className = "list_item";
@@ -131,16 +132,31 @@ function createList(){
   list_item_input.placeholder = "Neue Aufgabe...";
   list_item_input.autofocus = "true";
   list_item_input.spellcheck = "false";
+  list_item_input.rows = "1";
+  list_item_input.spellcheck = "false";
+  
+  var remove_icon = document.createElement("i");
+  remove_icon.className = "material-icons remove_icon";
+  remove_icon.innerHTML = "&#xe14c;";
+
+  var bullet_icon = document.createElement("i");
+  bullet_icon.className = "material-icons bullet_icon";
+  bullet_icon.innerHTML = "&#xe836;";
 
   var list_item_remove = document.createElement("button");
   list_item_remove.className = "list_item_remove";
-  list_item_remove.innerHTML = "x";
+  list_item_remove.appendChild(remove_icon);
 
   var button_add = document.createElement("button");
   button_add.className = "button_add";
   button_add.innerHTML = "Neue Aufgabe";
+  button_add.addEventListener("click", function addTask(){
+      var list_item = createListItem();
+      list.appendChild(list_item);
+  });
 
   list_item_container.appendChild(list_item_input);
+  list_item.appendChild(bullet_icon);
   list_item.appendChild(list_item_container);
   list_item.appendChild(list_item_remove);
   list.appendChild(list_item);
@@ -268,6 +284,44 @@ function lightenWorkplace() {
   document.getElementById("workplace_container").style.filter = "brightness(1)"; 
 }
 
+function createListItem() {
+
+  var list_item = document.createElement("li");
+  list_item.className = "list_item";
+
+  var list_item_container = document.createElement("div");
+  list_item_container.className = "list_item_container";
+
+  var list_item_input = document.createElement("textarea");
+  list_item_input.className = "list_item_input autoExpand";
+  list_item_input.style.resize = "none";
+  list_item_input.style.overflow = "hidden";
+  list_item_input.placeholder = "Neue Aufgabe...";
+  list_item_input.autofocus = "true";
+  list_item_input.spellcheck = "false";
+  list_item_input.rows = "1";
+  list_item_input.spellcheck = "false";
+  
+  var remove_icon = document.createElement("i");
+  remove_icon.className = "material-icons remove_icon";
+  remove_icon.innerHTML = "&#xe14c;";
+
+  var bullet_icon = document.createElement("i");
+  bullet_icon.className = "material-icons bullet_icon";
+  bullet_icon.innerHTML = "&#xe836;";
+
+  var list_item_remove = document.createElement("button");
+  list_item_remove.className = "list_item_remove";
+  list_item_remove.appendChild(remove_icon);
+
+  list_item_container.appendChild(list_item_input);
+  list_item.appendChild(bullet_icon);
+  list_item.appendChild(list_item_container);
+  list_item.appendChild(list_item_remove);
+  return list_item;
+
+}
+
 //Auto-Resizing Textarea Script von Codepen
 function getScrollHeight(elm){
   var savedValue = elm.value
@@ -280,7 +334,7 @@ function onExpandableTextareaInput({ target:elm }){
   // make sure the input event originated from a textarea and it's desired to be auto-expandable
   if( !elm.classList.contains('autoExpand') || !elm.nodeName == 'TEXTAREA' ) return
   
-  var minRows = elm.getAttribute('data-min-rows')|0, rows;
+  var minRows = elm.getAttribute('data-min-rows')|1, rows;
   !elm._baseScrollHeight && getScrollHeight(elm)
 
   elm.rows = minRows
