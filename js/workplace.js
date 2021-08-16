@@ -134,6 +134,11 @@ function createList(){
   list_item_input.spellcheck = "false";
   list_item_input.rows = "1";
   list_item_input.spellcheck = "false";
+  list_item_input.minRows = "1";
+  list_item_input.onkeydown = function () {
+    console.log("test");
+    updateListSize(snippet_container);
+  }
   
   var remove_icon = document.createElement("i");
   remove_icon.className = "material-icons remove_icon";
@@ -146,6 +151,7 @@ function createList(){
   var list_item_remove = document.createElement("button");
   list_item_remove.className = "list_item_remove";
   list_item_remove.appendChild(remove_icon);
+  
 
   var button_add = document.createElement("button");
   button_add.className = "button_add";
@@ -153,6 +159,37 @@ function createList(){
   button_add.addEventListener("click", function addTask(){
       var list_item = createListItem();
       list.appendChild(list_item);
+      updateListSize(snippet_container);
+      for (let i = 0; i < snippet_container.getElementsByClassName("list_item_input").length; i++) {
+          snippet_container.getElementsByClassName("list_item_input")[i].onkeydown = function () {
+            updateListSize(snippet_container);
+          }
+          snippet_container.getElementsByClassName("list_item_remove")[i].onclick = function () {
+            //Delete Task
+            var screw_line = document.createElement("hr");
+            screw_line.className = "screw_line";
+            var width = snippet_container.clientWidth -40 + "px";
+            //screw_line.style.width = width;
+            screw_line.animate([
+              // keyframes
+              { width: "1px" },
+              { width: width }
+            ], {
+              // timing options
+              duration: 500,
+              iterations: 1,
+              easing: "cubic-bezier(.62,.11,.03,1)"
+            });
+            snippet_container.getElementsByClassName("list_item_remove")[i].parentElement.appendChild(screw_line);
+
+            //warten
+            setTimeout(() => { 
+              //list item removen
+              snippet_container.getElementsByClassName("list_item")[i].style.display = "none";
+             }, 500);
+             updateListSize(snippet_container);
+          }
+      }
   });
 
   list_item_container.appendChild(list_item_input);
@@ -163,6 +200,8 @@ function createList(){
   content_box.appendChild(list);
   content_box.appendChild(button_add);
   snippet_container.getElementsByClassName("snippet_body")[0].appendChild(content_box);
+  snippet_container.style.maxHeight = "216px";
+  snippet_container.style.minHeight = "216px";
   document.getElementById("workplace_container").appendChild(snippet_container);
   updateDrag();
 }
@@ -340,6 +379,18 @@ function onExpandableTextareaInput({ target:elm }){
   elm.rows = minRows
   rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
   elm.rows = minRows + rows
+}
+
+function updateListSize(element) {
+  var content_height = 0;
+  for (let i = 0; i < element.getElementsByClassName("list_item").length; i++) {
+    content_height += element.getElementsByClassName("list_item")[i].offsetHeight + 7;
+    console.log(content_height);
+  }
+
+  var container_height = 35 + 82 + content_height + 60 + "px";
+  element.style.minHeight = container_height;
+  element.style.maxHeight = container_height;
 }
 
 

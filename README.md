@@ -2,13 +2,13 @@
 
 BAUSTELLEN
 
-    -   textfeld macht resize nicht mit (höhe)
+- spellcheck wird nicht deaktiviert
+- list: auf enter neue aufgabe statt neuer zeile!
 
 NÄCHSTE SCHRITTE
 
-    -   button mit erstellen funktion
-    -   tabelle und liste einrichten
-
+    -   kleinere tools in note (fett, kursiv, italic und text größe     wenn möglich)
+    - kleinere tools in table (spalten und zeilen hinzufügen)
 Benutzer
 
 -   Speichern:
