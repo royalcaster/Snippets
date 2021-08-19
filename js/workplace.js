@@ -55,13 +55,17 @@ function createNote() {
 
   var content_box = document.createElement("div");
   content_box.className = "content_box";
+
+  var note_box = document.createElement("div");
+  note_box.className = "note_box";
   
   var text_area = document.createElement("textarea");
   text_area.className = "note_textarea";
   text_area.spellcheck = false;
   text_area.placeholder = "Ihre Notiz..." 
 
-  content_box.appendChild(text_area);
+  note_box.appendChild(text_area);
+  content_box.appendChild(note_box);
   snippet_container.getElementsByClassName("snippet_body")[0].appendChild(content_box);
   document.getElementById("workplace_container").appendChild(snippet_container);
   updateDrag();
@@ -71,7 +75,7 @@ function createTable(rows, cols) {
     let snippet_container = createSnippetContainer("table");
 
     let content_box = document.createElement("div");
-    content_box.className = "content_box";
+    content_box.className = "content_box flex";
 
     var table = document.createElement("table");
     table.className = "table";
@@ -91,16 +95,50 @@ function createTable(rows, cols) {
         col.appendChild(input);
         row.appendChild(col);
       }
-      table.appendChild(row);
+      table.appendChild(row); 
     }
 
-    content_box.appendChild(table);
+    var button_addCol = document.createElement("button");
+    button_addCol.className = "button_table_tool";
+    button_addCol.innerHTML = "neue Spalte";
+    var button_addRow = document.createElement("button");
+    button_addRow.className = "button_table_tool";
+    button_addRow.innerHTML = "neue Zeile";
+    var button_remCol = document.createElement("button");
+    button_remCol.className = "button_table_tool";
+    button_remCol.innerHTML = "Spalte löschen";
+    var button_remRow = document.createElement("button");
+    button_remRow.className = "button_table_tool";
+    button_remRow.innerHTML = "Zeile löschen";
+  
+    var tool_container_col = document.createElement("div");
+    tool_container_col.className = "tool_container_col";
+
+    var tool_container_row = document.createElement("div");
+    tool_container_row.className = "tool_container_row";
+
+    var table_box = document.createElement("div");
+    table_box.className = "table_box";
+
+    var breaker = document.createElement("hr");
+    breaker.className = "breaker";
+
+    table_box.appendChild(table);
+
+    tool_container_col.appendChild(button_addCol);
+    tool_container_col.appendChild(button_remCol);
+    tool_container_row.appendChild(button_addRow);
+    tool_container_row.appendChild(button_remRow);
+    content_box.appendChild(table_box);
+    content_box.appendChild(tool_container_col);
+    content_box.appendChild(breaker);
+    content_box.appendChild(tool_container_row);
     snippet_container.getElementsByClassName("snippet_body")[0].appendChild(content_box);
 
     let maxwidth = (cols * 150) + "px";
     snippet_container.style.maxWidth = maxwidth;
 
-    let maxheight = (rows * 45 + 100) + "px";
+    let maxheight = (rows * 45 + 100 + 200) + "px";
     snippet_container.style.minHeight = maxheight;
     snippet_container.style.maxHeight = maxheight;
 
@@ -130,10 +168,9 @@ function createList(){
   list_item_input.style.resize = "none";
   list_item_input.style.overflow = "hidden";
   list_item_input.placeholder = "Neue Aufgabe...";
-  list_item_input.autofocus = "true";
-  list_item_input.spellcheck = "false";
+  list_item_input.autofocus = true;
+  list_item_input.spellcheck = false;
   list_item_input.rows = "1";
-  list_item_input.spellcheck = "false";
   list_item_input.minRows = "1";
   list_item_input.onkeydown = function () {
     console.log("test");
@@ -270,6 +307,17 @@ function createSnippetContainer(type){
   var snippet_header = document.createElement("div");
   snippet_header.className = "snippet_header";
 
+  var snippet_close = document.createElement("button");
+  snippet_close.className = "snippet_close";
+  snippet_close.onclick = function () {
+    snippet_container.remove();
+  }
+
+  var icon_close = document.createElement("i");
+  icon_close.className = "material-icons icon_close";
+  icon_close.innerHTML = "&#xe5cd;";
+  snippet_close.appendChild(icon_close);
+
   var h_lines = document.createElement("div");
   h_lines.className = "h_lines";
 
@@ -306,6 +354,7 @@ function createSnippetContainer(type){
 
   h_lines.appendChild(h_line);
   snippet_header.appendChild(h_lines);
+  snippet_header.appendChild(snippet_close);
   snippet_container.appendChild(snippet_header);
   title_box.appendChild(icon);
   title_box.appendChild(title_field);
@@ -336,10 +385,9 @@ function createListItem() {
   list_item_input.style.resize = "none";
   list_item_input.style.overflow = "hidden";
   list_item_input.placeholder = "Neue Aufgabe...";
-  list_item_input.autofocus = "true";
-  list_item_input.spellcheck = "false";
+  list_item_input.autofocus = true;
+  list_item_input.spellcheck = false;
   list_item_input.rows = "1";
-  list_item_input.spellcheck = "false";
   
   var remove_icon = document.createElement("i");
   remove_icon.className = "material-icons remove_icon";

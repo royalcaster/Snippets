@@ -204,17 +204,16 @@ h1 {
     width: 100%;
     height: 100%;
     border: none;
-    background-color:#ffffff;
+    background-color:white;
     font-family: "Poppins", sans-serif;
     font-weight: 300;
     outline:none;
     font-size: 15px;
-    border-radius: 15px;
     overflow: hidden;
 }
 
 .note_textarea:hover {
-    background-color: #f7f7f7;
+    background-color: rgba(0, 0, 0, 0.0);
 }
 
 .note_textarea::placeholder {
@@ -343,6 +342,7 @@ h1 {
 }
 
 .table {
+    display: inline-block;
 }
 
 .table_row {
@@ -556,4 +556,63 @@ h1 {
     background-color: rgba(0, 0, 0, 0.6);
     height: 2px;
     border: none;
+}
+
+.snippet_close {
+    float: right;
+    border: none;
+    background-color: transparent;
+    margin-top: 4px;
+    margin-right: 3px;
+    color:rgb(104, 104, 104);
+}
+
+.snippet_close:hover {
+    color: rgb(201, 38, 38);
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: 2s;
+}
+
+@-webkit-keyframes rotate {
+    0% {transform: rotateY(0);}
+    80% {transform: rotateY(70);}
+    100% {transform: rotateY(90);}
+}
+
+.note_box {
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: white;
+    flex-grow: 1;
+    height: 100%;
+    border-radius: 15px;
+    padding: 10px;
+    margin-left: 2px;
+}
+
+.note_box:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.button_table_tool {
+
+}
+
+.tool_container_col {
+    background-color: red;
+}
+
+.tool_container_row {
+    background-color: green;
+    display: contents;
+}
+
+.table_box {
+    display: inline-block;
+    background-color: green;
+    margin-right: 10px;
+}
+
+.flex {
+    display: flex;
 }
