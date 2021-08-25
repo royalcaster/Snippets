@@ -1,3 +1,6 @@
+//setup light/darkmode
+setupDarkmode();
+
 // Make all the DIV elements draggable:
 var containers = document.getElementsByClassName("snippet_container");
 var darkmodeEnabled = false;
@@ -40,8 +43,8 @@ function dragSnippet(elmnt) {
     pos3 = e.clientX;
     pos4 = e.clientY;
     // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
   }
 
   function closeDragElement() {
@@ -446,14 +449,39 @@ function toggleDarkmode(){
     if (darkmodeEnabled) {
       document.getElementById("darkmode_icon").innerHTML = "&#xf204;";
       darkmodeEnabled = false;
+      setupLightmode();
     }
     else {
       document.getElementById("darkmode_icon").innerHTML = "&#xf205;";
       darkmodeEnabled = true;
+      setupDarkmode();
     }
 }
 
+function setupDarkmode(){
+  document.getElementById("workplace_container").style.backgroundColor = "#1C1C1C";
+  document.getElementById("container_navbar").style.backgroundColor = "#2B2B2B";
+  document.getElementById("container_toolbar").style.backgroundColor = "#2B2B2B";
+  document.getElementById("main_title").style.color = "rgba(255,255,255,0.9)";
+  document.getElementById("container_navbar").style.color = "white";
 
+  for (let i = 0; i<document.getElementsByClassName("options_button").length;i++){
+    document.getElementsByClassName("options_button")[i].style.color = "rgba(255,255,255,0.9)";
+    document.getElementsByClassName("options_button")[i].style.fontWeight = "300";
+  }
+}
+
+function setupLightmode(){
+  document.getElementById("workplace_container").style.backgroundColor = "#c0c0c0";
+  document.getElementById("container_navbar").style.backgroundColor = "white";
+  document.getElementById("container_toolbar").style.backgroundColor = "white";
+  document.getElementById("main_title").style.color = "rgba(0, 0, 0, 0.75)";
+
+  for (let i = 0; i<document.getElementsByClassName("options_button").length;i++){
+    document.getElementsByClassName("options_button")[i].style.color = "rgba(0,0,0,0.75)";
+    document.getElementsByClassName("options_button")[i].style.fontWeight = "500";
+  }
+}
 
 // global delegated event listener
 document.addEventListener('input', onExpandableTextareaInput)

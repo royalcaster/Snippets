@@ -36,8 +36,9 @@ h1 {
     background-color: #c0c0c0;
     height: 3000px;
     width: 100%;
-    position:  relative;
+    position: relative;
     z-index: 0;
+    box-shadow: inset 20px 20px 20px black;
 }
 
 .container_footer {
@@ -628,7 +629,7 @@ h1 {
     height: 40px;
     vertical-align: middle;
     font-family: "Poppins", sans-serif;
-    margin-right: 15px;
+    margin-right: 10px;
     font-weight: 500;
     color:rgba(0, 0, 0, 0.55);
     border-radius: 10px;
@@ -664,6 +665,10 @@ h1 {
 .icon_darkmode {
     transform: scale(1.6);
     font-family: "Poppins", sans-serif;
+}
+
+.icon_options {
+    vertical-align: middle;
 }
 
 .text_darkmode {
