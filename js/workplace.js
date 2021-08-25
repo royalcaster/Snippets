@@ -1,5 +1,6 @@
 // Make all the DIV elements draggable:
 var containers = document.getElementsByClassName("snippet_container");
+var darkmodeEnabled = false;
 
 function updateDrag(){
   for(var i = 0; i < containers.length; i++) {
@@ -440,6 +441,18 @@ function updateListSize(element) {
   element.style.minHeight = container_height;
   element.style.maxHeight = container_height;
 }
+
+function toggleDarkmode(){
+    if (darkmodeEnabled) {
+      document.getElementById("darkmode_icon").innerHTML = "&#xf204;";
+      darkmodeEnabled = false;
+    }
+    else {
+      document.getElementById("darkmode_icon").innerHTML = "&#xf205;";
+      darkmodeEnabled = true;
+    }
+}
+
 
 
 // global delegated event listener
