@@ -11,6 +11,10 @@ function updateDrag(){
   }
 }
 
+//FARBCODE
+
+const colors = ["#FD6057","#FD815B","#FFE273","#02A787","#1D8CC2"]
+
 
 //drag-funktion für Snippet
 function dragSnippet(elmnt) {
@@ -482,6 +486,133 @@ function setupLightmode(){
     document.getElementsByClassName("options_button")[i].style.fontWeight = "500";
   }
 }
+
+//MENU 
+class Card extends HTMLElement{
+  constructor(index, title, date, color){
+    super();
+    this.index = index;
+    this.title = title;
+    this.date = date;
+    this.color = color;
+
+       
+  }
+}
+
+function createCard(title, date, color) {
+  //create DOM elements
+    let card_container = document.createElement("div");
+    card_container.className = "card_container";
+
+    let color_panel = document.createElement("div");
+    color_panel.className = "color_panel";
+    color_panel.style.backgroundColor = color;
+
+    let card_content = document.createElement("div");
+    card_content.className = "card_content";
+
+    let card_title = document.createElement("p");
+    card_title.className = "card_title";
+    card_title.innerHTML = title;
+
+    let card_date = document.createElement("p");
+    card_date.className = "card_date";
+    card_date.innerHTML = date;
+
+    let card_options_button = document.createElement("button");
+    card_options_button.className = "card_options_button";
+
+    let card_options_icon = document.createElement("i");
+    card_options_icon.className = "material-icons card_options_icon";
+    card_options_icon.innerHTML = "&nbsp;&#xe8b8;";
+
+    let card_entry = document.createElement("div");
+    card_entry.className = "card_entry";
+
+    let entry_icon = document.createElement("i");
+    entry_icon.className = "material-icons entry_icon";
+    entry_icon.innerHTML = "&nbsp;&#xe5da;"
+    entry_icon.style.color = color;
+
+    //DROPDOWN MENU
+    let dropdown_container = document.createElement("div");
+    dropdown_container.className = "dropdown_container";
+
+    let rename_container = document.createElement("div");
+    rename_container.className = "rename_container";
+
+    let rename_icon = document.createElement("i");
+    rename_icon.className = "material-icons rename_icon";
+    rename_icon.innerHTML = "&#xe150;";
+    
+    let rename_input = document.createElement("input");
+    rename_input.className = "rename_input";
+    rename_input.placeholder = "Neuer Titel...";
+    rename_input.spellcheck = false;
+
+    let color_icon = document.createElement("i");
+    color_icon.className = "material-icons rename_icon";
+    color_icon.innerHTML = "&#xe3b7;";
+
+    let color_palette = document.createElement("div");
+    color_palette.className = "color_palette";
+
+    let delete_button = document.createElement("button");
+    delete_button.className = "delete_button";
+  
+    let delete_icon = document.createElement("i");
+    delete_icon.className = "material-icons delete_icon";
+    delete_icon.innerHTML = "&#xe872;";
+
+    let cb1 = createColorButton(0);
+    cb1.style.marginLeft = "50px"
+    let cb2 = createColorButton(1);
+    let cb3 = createColorButton(2);
+    let cb4 = createColorButton(3);
+    let cb5 = createColorButton(4);
+
+    card_container.appendChild(color_panel);
+    card_container.appendChild(card_content);
+    card_content.appendChild(card_title);
+    card_content.appendChild(card_date);
+    card_options_button.appendChild(card_options_icon);
+    card_content.appendChild(card_options_button);
+    card_entry.appendChild(entry_icon);
+    card_container.appendChild(card_entry);
+    rename_container.appendChild(rename_icon);
+    rename_container.appendChild(rename_input);
+    color_palette.appendChild(color_icon);
+    color_palette.appendChild(cb1);
+    color_palette.appendChild(cb2);
+    color_palette.appendChild(cb3);
+    color_palette.appendChild(cb4);
+    color_palette.appendChild(cb5);
+    dropdown_container.appendChild(color_palette);
+    dropdown_container.appendChild(rename_container);
+    delete_button.appendChild(delete_icon);
+    dropdown_container.appendChild(delete_button);
+    dropdown_container.appendChild(color_palette);
+    card_container.appendChild(dropdown_container);
+
+    return card_container;
+}
+
+function createColorButton(color) {
+  let button = document.createElement("button");
+  button.className = "color_button";
+  button.style.backgroundColor = colors[color];
+  return button;
+}
+
+var card = createCard("Arbeitsplatz 1",new Date(),colors[0]);
+document.getElementById("cards_container").appendChild(card);
+
+var card2 = createCard("Arbeitsplatz 2",new Date(),colors[4]);
+document.getElementById("cards_container").appendChild(card2);
+
+var card3 = createCard("Arbeitsplatz 3",new Date(),colors[2]);
+document.getElementById("cards_container").appendChild(card3);
 
 // global delegated event listener
 document.addEventListener('input', onExpandableTextareaInput)

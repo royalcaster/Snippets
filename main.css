@@ -685,16 +685,18 @@ h1 {
 
 .menu_title {
     color: white;
-    font-size: 50px;
+    font-size: 75px;
     font-weight: 700;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 50px;
 }
 
 .menu_navbar {
     background-color: transparent;
-    width: calc(100vw - 400px);
+    width: 60%;
+    min-width: 550px;
     margin: auto;
+    margin-top: 50px;
 }
 
 .menu_button {
@@ -741,18 +743,25 @@ h1 {
 
 .cards_container {
     background-color: transparent;
-    width: calc(100vw - 400px);
+    width: calc(100vw - 700px);
+    min-width: 300px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 20px;
+    text-align: left;
 }
 
 .card_container {
     background-color: #202331;
     height: 140px;
-    width: 450px;
+    width: 100%;
     border-radius: 15px;
     transition: 0.15s;
-    margin-top: 20px;
+    display: inline-block;
+    margin: auto;
+    margin-top: 30px;
+    text-align: left;
+    z-index: 0;
+    position: relative;
 }
 
 .card_container:hover {
@@ -761,7 +770,6 @@ h1 {
 }
 
 .color_panel {
-    background-color: #FD6057;
     width: 100%;
     height: 30px;
     border-top-left-radius: 15px;
@@ -771,18 +779,20 @@ h1 {
 .card_title {
     color: rgba(255,255,255,0.75);
     font-weight: 500;
-    font-size: 28px;
+    font-size: 30px;
     margin-left: 25px;
-    margin-top: 15px;
+    margin-top: 20px;
     display: inline-block;
+    font-family: "Poppins", sans-serif;
 }
 
 .card_date {
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.25);
     font-weight: 200;
     font-size: 15px;
-    margin-left: 15px;
-    display: inline-block;
+    margin-left: 30px;
+    margin-top: -22px;
+    position: absolute;
 }
 
 .menu_create_icon {
@@ -826,11 +836,13 @@ h1 {
 .card_options_icon {
     transform: scale(1.3);
     margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 12px;
 }
 
 .card_content {
     display: inline-block;
-    width: 80%;
+    width: 84%;
     height: calc(100% - 30px);
     margin: 0;
     border-bottom-left-radius: 15px;
@@ -838,7 +850,7 @@ h1 {
 
 .card_entry {
     display: inline-block;
-    width: 18%;
+    width: 15%;
     height: 65px;
     text-align: center;
 }
@@ -846,8 +858,104 @@ h1 {
 .entry_icon {
     color: rgba(255,255,255,0.75);
     vertical-align: middle;
-    top: 10px;
+    top: 5px;
     transform: scale(1.5);
     position: relative;
-    color:#FD6057;
+    border-radius: 5px;
+    margin-right: 17px;
+    padding: 15px;
 }
+
+.entry_icon:hover {
+    cursor: pointer;
+    background-color: #2B3043;
+    
+}
+
+.dropdown_container {
+    z-index: 20;
+    position: absolute;
+    height: 110px;
+    background-color: #171924;
+    top: 30px;
+    border-bottom-left-radius: 15px;
+    width: calc(100% - 330px);
+    font-family: "Poppins", sans-serif;
+}
+
+.rename_container {
+    height: 50%;
+    width: calc(100% - 100px);
+    display: inline-block;
+}
+
+.rename_icon {
+    display: inline-block;
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 15px;
+    color: rgba(255,255,255,0.75);
+}
+
+.rename_input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: rgba(255,255,255,0.75);
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.color_palette {
+    height: 50%;
+    width: calc(100% - 100px);
+    display: inline-block;
+}
+
+.color_button {
+    height: 35px;
+    width: 35px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255,255,255,0);
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.color_button:hover {
+    outline: none;
+    border: 2px solid rgba(255,255,255,0.75);
+}
+
+.color_button:focus {
+    outline: none;
+}
+
+.delete_button {
+    float: right;
+    width: 100px;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.delete_button:hover {
+    background-color: #12131b;
+}
+
+.delete_button:focus {
+    outline: none;
+}
+
+.delete_icon {
+    transform: scale(1.2);
+    color: rgba(255,255,255,0.75);
+}
+
