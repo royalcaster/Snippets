@@ -877,10 +877,21 @@ h1 {
     position: absolute;
     height: 110px;
     background-color: #171924;
-    top: 30px;
+    top: -80px;
     border-bottom-left-radius: 15px;
     width: calc(100% - 330px);
     font-family: "Poppins", sans-serif;
+    animation: "";
+}
+
+@keyframes down {
+    from {top: -80;}
+    to {top: 30px;}
+}
+
+@keyframes up {
+    from {top: 30px;}
+    to {top: -80px;}
 }
 
 .rename_container {

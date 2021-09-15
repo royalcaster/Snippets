@@ -522,6 +522,10 @@ function createCard(title, date, color) {
 
     let card_options_button = document.createElement("button");
     card_options_button.className = "card_options_button";
+    card_options_button.addEventListener("click",function(){
+      dropdown_container.style.animationName = "down";
+      dropdown_container.style.animationDuration = "0.5s";
+    })
 
     let card_options_icon = document.createElement("i");
     card_options_icon.className = "material-icons card_options_icon";
