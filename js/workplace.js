@@ -500,7 +500,9 @@ class Card extends HTMLElement{
   }
 }
 
-function createCard(title, date, color) {
+function createCard(title, color) {
+  //bool for toggle dropdown
+  var dropdownIsActive = false;
   //create DOM elements
     let card_container = document.createElement("div");
     card_container.className = "card_container";
@@ -518,13 +520,39 @@ function createCard(title, date, color) {
 
     let card_date = document.createElement("p");
     card_date.className = "card_date";
-    card_date.innerHTML = date;
+    card_date.innerHTML = new Date().toString().substring(0,24);
 
     let card_options_button = document.createElement("button");
     card_options_button.className = "card_options_button";
     card_options_button.addEventListener("click",function(){
-      dropdown_container.style.animationName = "down";
-      dropdown_container.style.animationDuration = "0.5s";
+
+      if (!dropdownIsActive) {
+        dropdownIsActive = true;
+
+        dropdown_container.style.animationName = "show";
+        dropdown_container.style.animationDuration = "0.75s";
+        dropdown_container.style.opacity = "1";
+
+        dropdown_slide.style.animationName = "slide";
+        dropdown_slide.style.animationDuration = "0.35s";
+        dropdown_slide.style.width = "calc(100% - 330px)";
+
+        card_options_icon.innerHTML = "&nbsp;&#xe5ca;";
+      }
+      else {
+        dropdownIsActive = false;
+
+        dropdown_container.style.animationName = "hide";
+        dropdown_container.style.animationDuration = "0.75s";
+        dropdown_container.style.opacity = "0";
+
+        dropdown_slide.style.animationName = "leave";
+        dropdown_slide.style.animationDuration = "0.35s";
+        dropdown_slide.style.width = "0px ";
+
+        card_options_icon.innerHTML = "&nbsp;&#xe8b8;";
+      }
+    
     })
 
     let card_options_icon = document.createElement("i");
@@ -543,6 +571,9 @@ function createCard(title, date, color) {
     let dropdown_container = document.createElement("div");
     dropdown_container.className = "dropdown_container";
 
+    let dropdown_slide = document.createElement("div");
+    dropdown_slide.className = "dropdown_slide";
+
     let rename_container = document.createElement("div");
     rename_container.className = "rename_container";
 
@@ -558,6 +589,7 @@ function createCard(title, date, color) {
     let color_icon = document.createElement("i");
     color_icon.className = "material-icons rename_icon";
     color_icon.innerHTML = "&#xe3b7;";
+    color_icon.style.top = "50px";
 
     let color_palette = document.createElement("div");
     color_palette.className = "color_palette";
@@ -576,6 +608,7 @@ function createCard(title, date, color) {
     let cb4 = createColorButton(3);
     let cb5 = createColorButton(4);
 
+    card_container.appendChild(dropdown_slide);
     card_container.appendChild(color_panel);
     card_container.appendChild(card_content);
     card_content.appendChild(card_title);
@@ -598,7 +631,6 @@ function createCard(title, date, color) {
     dropdown_container.appendChild(delete_button);
     dropdown_container.appendChild(color_palette);
     card_container.appendChild(dropdown_container);
-
     return card_container;
 }
 
@@ -609,13 +641,13 @@ function createColorButton(color) {
   return button;
 }
 
-var card = createCard("Arbeitsplatz 1",new Date(),colors[0]);
+var card = createCard("Arbeitsplatz 1", colors[0]);
 document.getElementById("cards_container").appendChild(card);
 
-var card2 = createCard("Arbeitsplatz 2",new Date(),colors[4]);
+var card2 = createCard("Arbeitsplatz 2", colors[4]);
 document.getElementById("cards_container").appendChild(card2);
 
-var card3 = createCard("Arbeitsplatz 3",new Date(),colors[2]);
+var card3 = createCard("Arbeitsplatz 3", colors[2]);
 document.getElementById("cards_container").appendChild(card3);
 
 // global delegated event listener
