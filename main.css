@@ -688,7 +688,7 @@ h1 {
     font-size: 75px;
     font-weight: 700;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 0px;
 }
 
 .menu_navbar {
@@ -696,7 +696,7 @@ h1 {
     width: 60%;
     min-width: 550px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .menu_button {

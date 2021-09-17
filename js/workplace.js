@@ -414,7 +414,6 @@ function createListItem() {
   list_item.appendChild(list_item_container);
   list_item.appendChild(list_item_remove);
   return list_item;
-
 }
 
 //Auto-Resizing Textarea Script von Codepen
@@ -487,20 +486,26 @@ function setupLightmode(){
   }
 }
 
-//MENU 
-class Card extends HTMLElement{
-  constructor(index, title, date, color){
-    super();
-    this.index = index;
-    this.title = title;
-    this.date = date;
-    this.color = color;
+//MENU
+var workplaces = [];
 
-       
+function createWorkplace(key, title, color_index) {
+  workplaces.push({
+    key: key,
+    title: title,
+    color_index: color_index
+  });
+}
+
+function updateCardList() {
+  document.getElementById("cards_container").innerHTML = "";
+
+  for (let i = 0; i < workplaces.length; i++) {
+    document.getElementById("cards_container").appendChild(createCard(workplaces[i].title, workplaces[i].color_index));
   }
 }
 
-function createCard(title, color) {
+function createCard(title, color_index) {
   //bool for toggle dropdown
   var dropdownIsActive = false;
   //create DOM elements
@@ -509,7 +514,7 @@ function createCard(title, color) {
 
     let color_panel = document.createElement("div");
     color_panel.className = "color_panel";
-    color_panel.style.backgroundColor = color;
+    color_panel.style.backgroundColor = colors[color_index];
 
     let card_content = document.createElement("div");
     card_content.className = "card_content";
@@ -565,7 +570,7 @@ function createCard(title, color) {
     let entry_icon = document.createElement("i");
     entry_icon.className = "material-icons entry_icon";
     entry_icon.innerHTML = "&nbsp;&#xe5da;"
-    entry_icon.style.color = color;
+    entry_icon.style.color = colors[color_index];
 
     //DROPDOWN MENU
     let dropdown_container = document.createElement("div");
@@ -603,10 +608,29 @@ function createCard(title, color) {
 
     let cb1 = createColorButton(0);
     cb1.style.marginLeft = "50px"
+    cb1.addEventListener("click", function () {
+      colorGui(color_panel,entry_icon,0)
+    });
+
     let cb2 = createColorButton(1);
+    cb2.addEventListener("click", function() {
+      colorGui(color_panel, entry_icon,1)
+    });
+
     let cb3 = createColorButton(2);
+    cb3.addEventListener("click", function() {
+      colorGui(color_panel, entry_icon,2)
+    });
+
     let cb4 = createColorButton(3);
+    cb4.addEventListener("click", function() {
+      colorGui(color_panel, entry_icon,3)
+    });
+
     let cb5 = createColorButton(4);
+    cb5.addEventListener("click", function() {
+      colorGui(color_panel, entry_icon,4)
+    });
 
     card_container.appendChild(dropdown_slide);
     card_container.appendChild(color_panel);
@@ -641,14 +665,16 @@ function createColorButton(color) {
   return button;
 }
 
-var card = createCard("Arbeitsplatz 1", colors[0]);
-document.getElementById("cards_container").appendChild(card);
+function colorGui(element1, element2, index) {
+  element1.style.backgroundColor = colors[index];
+  element2.style.color = colors[index];
+}
 
-var card2 = createCard("Arbeitsplatz 2", colors[4]);
-document.getElementById("cards_container").appendChild(card2);
-
-var card3 = createCard("Arbeitsplatz 3", colors[2]);
-document.getElementById("cards_container").appendChild(card3);
+//Button für neue Arbeitsplätze zuweisen
+document.getElementById("create_button").addEventListener("click",function() {
+  createWorkplace(workplaces.length, "Neuer Arbeitsplatz",0);
+  updateCardList();
+});
 
 // global delegated event listener
 document.addEventListener('input', onExpandableTextareaInput)
