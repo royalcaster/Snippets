@@ -748,6 +748,8 @@ h1 {
     margin: auto;
     margin-top: 20px;
     text-align: left;
+    overflow-y: auto;
+    height: 690px;
 }
 
 .card_container {
@@ -790,7 +792,7 @@ h1 {
     color: rgba(255,255,255,0.25);
     font-weight: 200;
     font-size: 15px;
-    margin-left: 20%;
+    margin-left: 10px;
     margin-top: -22px;
     display: inline-block;
 }
@@ -991,3 +993,40 @@ h1 {
     color: rgba(255,255,255,0.75);
 }
 
+.empty_icon {
+    margin-top: 90px;
+    color: rgba(255,255,255,0.35);
+    margin-left: calc(50% - 20px);
+    transform: scale(6);
+    user-select: none;
+}
+
+.empty_message {
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    margin-top: 80px;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #2B3043;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #212433;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1c1e2b;
+}

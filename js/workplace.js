@@ -487,12 +487,15 @@ function setupLightmode(){
 }
 
 //MENU
+  
+
 var workplaces = [];
 
-function createWorkplace(key, title, color_index) {
+function createWorkplace(key, title, date, color_index) {
   workplaces.push({
     key: key,
     title: title,
+    date: date,
     color_index: color_index
   });
 }
@@ -500,12 +503,29 @@ function createWorkplace(key, title, color_index) {
 function updateCardList() {
   document.getElementById("cards_container").innerHTML = "";
 
-  for (let i = 0; i < workplaces.length; i++) {
-    document.getElementById("cards_container").appendChild(createCard(workplaces[i].title, workplaces[i].color_index));
+  if(workplaces.length == 0) {
+    let empty_icon = document.createElement("i");
+    empty_icon.className = "material-icons empty_icon";
+    empty_icon.innerHTML = "&#xe033;"
+    let empty_message = document.createElement("p");
+    empty_message.className = "empty_message";
+    empty_message.innerHTML = "Du hast noch keine Arbeitspl&auml;tze erstellt.";
+    document.getElementById("cards_container").appendChild(empty_icon);
+    document.getElementById("cards_container").appendChild(empty_message);
   }
+  else {
+    for (let i = 0; i < workplaces.length; i++) {
+    document.getElementById("cards_container").appendChild(createCard(i, workplaces[i].title, workplaces[i].date,workplaces[i].color_index));
+  }
+  }  
 }
 
-function createCard(title, color_index) {
+//cardlist updaten, damit empty message angezeigt wird
+  updateCardList();
+
+function createCard(key, title, date, color_index) {
+  //key um an objekte in worplaces ranzukommen
+  var index = key;
   //bool for toggle dropdown
   var dropdownIsActive = false;
   //create DOM elements
@@ -525,7 +545,7 @@ function createCard(title, color_index) {
 
     let card_date = document.createElement("p");
     card_date.className = "card_date";
-    card_date.innerHTML = new Date().toString().substring(0,24);
+    card_date.innerHTML = date;
 
     let card_options_button = document.createElement("button");
     card_options_button.className = "card_options_button";
@@ -556,8 +576,8 @@ function createCard(title, color_index) {
         dropdown_slide.style.width = "0px ";
 
         card_options_icon.innerHTML = "&nbsp;&#xe8b8;";
+        updateCardList();
       }
-    
     })
 
     let card_options_icon = document.createElement("i");
@@ -590,6 +610,9 @@ function createCard(title, color_index) {
     rename_input.className = "rename_input";
     rename_input.placeholder = "Neuer Titel...";
     rename_input.spellcheck = false;
+    rename_input.onchange = function(){
+      workplaces[index].title = rename_input.value;
+    };
 
     let color_icon = document.createElement("i");
     color_icon.className = "material-icons rename_icon";
@@ -610,26 +633,31 @@ function createCard(title, color_index) {
     cb1.style.marginLeft = "50px"
     cb1.addEventListener("click", function () {
       colorGui(color_panel,entry_icon,0)
+      workplaces[index].color_index = 0;
     });
 
     let cb2 = createColorButton(1);
     cb2.addEventListener("click", function() {
       colorGui(color_panel, entry_icon,1)
+      workplaces[index].color_index = 1;
     });
 
     let cb3 = createColorButton(2);
     cb3.addEventListener("click", function() {
       colorGui(color_panel, entry_icon,2)
+      workplaces[index].color_index = 2;
     });
 
     let cb4 = createColorButton(3);
     cb4.addEventListener("click", function() {
       colorGui(color_panel, entry_icon,3)
+      workplaces[index].color_index = 3;
     });
 
     let cb5 = createColorButton(4);
     cb5.addEventListener("click", function() {
-      colorGui(color_panel, entry_icon,4)
+      colorGui(color_panel, entry_icon, 4);
+      workplaces[index].color_index = 4;
     });
 
     card_container.appendChild(dropdown_slide);
@@ -672,7 +700,7 @@ function colorGui(element1, element2, index) {
 
 //Button für neue Arbeitsplätze zuweisen
 document.getElementById("create_button").addEventListener("click",function() {
-  createWorkplace(workplaces.length, "Neuer Arbeitsplatz",0);
+  createWorkplace(workplaces.length, "Neuer Arbeitsplatz", new Date().toString().substring(0,24), 0);
   updateCardList();
 });
 
